@@ -35,7 +35,6 @@ const criaCliente = (nome,email)=>{
         })
     })
     .then(resposta=>{
-        console.log(resposta)
         return resposta.body;
     })
 }
@@ -53,10 +52,25 @@ const detalhaCliente = (id) =>{
 })
 }
 
+const atualizarCliente = (nome, email, id)=>{
+    return fetch(`http://localhost:3000/profile/${id}`,{
+        method:'PUT',
+        headers:{'Content-type':'application/json'},
+        body:JSON.stringify({
+            nome:nome,
+            email:email
+        })
+    })
+    .then(resposta=>{
+        return resposta.json;
+    })
+}
+
 export const serviceClientes = {
     listaClientes,
     criaCliente,
     removeCliente,
-    detalhaCliente
+    detalhaCliente,
+    atualizarCliente
 }
 
